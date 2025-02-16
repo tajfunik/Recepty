@@ -1,0 +1,23 @@
+{
+  "name": "recepty",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tajfunik/Recepty.git"
+  },
+  "author": "mhruska",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tajfunik/Recepty/issues"
+  },
+  "homepage": "https://github.com/tajfunik/Recepty#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2",
+    "nodemon": "^3.1.9"
+  }
+}
