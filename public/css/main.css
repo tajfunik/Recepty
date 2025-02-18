@@ -1,0 +1,189 @@
+
+/*------------------------------------------------------------------HEADER-------------------------------------------------------*/
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f6b77b;
+    padding: 1.2rem 1.6rem;
+    color: white;
+}
+
+.logo a {
+    font-size: 1.9rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.9rem;
+    transition: 0.3s;
+    font-weight: 700;
+}
+
+/* VYHĽADÁVANIE */
+form {
+    display: flex;
+    background: white;
+    border-radius: 0.4rem;
+    overflow: hidden;
+}
+
+form input {
+    border: none;
+    padding: 0.75rem;
+    outline: none;
+}
+
+form button {
+    background: #f38954;
+    border: none;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+    color: white;
+}
+
+form button:hover {
+    background: #e64a00;
+}
+
+
+/*------------------------------------------------------------------MAIN-------------------------------------------------------*/
+.main-header{
+    color: white;
+    padding-top: 4rem;
+    text-align: center;
+    background-image: url('../img/backgroundImage.jpg');
+    background-size: cover; /* alebo contain podľa potreby */
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100vw;
+    height: 45rem;
+}
+.main-nadpis{
+    font-size: 4rem;
+}
+.main-info{
+    padding-top: 2.5rem;
+    font-size: 1.8rem;
+}
+.main-card{
+    width: 80%;
+    height: 35rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    border: solid 0.2rem rgb(57, 57, 57);
+    border-radius: 0.5rem;
+    background-color: #f6b77b;
+}
+/*----------------------------------Lava cast Recepty----------------------------------------*/
+.recepty{
+    width: 65%;
+}
+.recepty h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+.recepty-container{
+    width: 90%;
+    margin: 0 auto;
+    height: 30rem;
+    padding-top: 0.5rem;
+    background-color: rgb(255, 253, 250);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Pridanie tieňa */
+    transform: translateY(-5px); /* Jemné zdvihnutie karty */
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+.recepty-header{
+    background-color: #f6b77b;
+}
+.recepty-nav{
+    display: flex;
+    justify-content: center;
+    padding-top: 0.5rem;
+}
+.recepty-zoznam{
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+}
+
+.recepty-kategorie {
+    color: black;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.list-of-recepts{
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 0.5rem;
+    overflow-y: auto; /* Meníme scroll na auto */
+    max-height: 26rem; /* Obmedzíme maximálnu výšku, aby fungoval scroll */
+    padding-right: 0.5rem; /* Pomôže pri scrollbar-e */
+    margin-top: 1rem;
+}
+
+
+
+/*----------------------------------------Dany recept----------------------------*/
+.recept{
+    width: 100%;
+    height: 7rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: row;
+    padding-top: 1rem;
+}
+.recept-left{
+    width: 30%;
+}
+.recept-left img{
+    width: 100%;
+    margin: 0 auto;
+    height: 98%;
+    border-radius: 0.5rem;
+}
+
+.recept-right{
+    width: 70%;
+    text-align: center;
+}
+
+
+
+/*----------------------------------Prava cast na zobrazenie Receptu----------------------------------------*/
+.zobraz-cely-recept{
+    width: 35%;
+}
+.zobraz-cely-recept h2{
+    text-align: center;
+    font-size: 2rem;
+    padding: 1rem 0;
+}
+
+.zobrazit-recept-container{
+    width: 90%;
+    margin: 0 auto;
+    height: 30rem;
+    padding: 1rem;
+    background-color: rgb(255, 253, 250);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Pridanie tieňa */
+    transform: translateY(-5px); /* Jemné zdvihnutie karty */
+    border-radius: 0.5rem;
+    overflow: hidden;
+}

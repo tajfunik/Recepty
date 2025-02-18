@@ -1,3 +1,5 @@
+
+//áto funkcia slúži na načítanie údajov z backendu hneď po načítaní stránky.
 document.addEventListener("DOMContentLoaded", async () => {
     try {
         const response = await fetch('/recepty'); // Pošle GET požiadavku na backend
@@ -27,10 +29,8 @@ document.getElementById('sendButton').addEventListener('click', async () => {
             },
             body: JSON.stringify(newRecipe)  // Konvertujeme objekt na JSON a posielame ho
         });
-
         const data = await response.json();  // Spracujeme odpoveď zo servera
         console.log("Odpoveď zo servera:", data);  // Vypíšeme odpoveď do konzoly
-
     } catch (error) {
         console.error("Chyba pri posielaní dát:", error);  // Ak nastane chyba
     }

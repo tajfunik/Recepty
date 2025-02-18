@@ -15,7 +15,7 @@ app.get('/recepty', (req, res) => {
 });
 
 
-
+//POST request na vytvorenie receptu a pridanie do zoznamu receptov
 app.post('/recepty', (req, res) => {
     const newRecipe = req.body;  // Dáta poslané klientom (obsah POST požiadavky)
     console.log("Prijaté dáta:", newRecipe);  // Môžeš si ich vypísať v konzole

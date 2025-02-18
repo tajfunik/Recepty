@@ -4,18 +4,128 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Moja stránka</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-    <h1>Moja stránka s Express serverom</h1>
-    <p id="message">Načítavam správu...</p>
 
-    <h2>
-        Konecne som sa pripojil na server 
-    </h2>
+    <div class="header">
+        <div class="logo">
+            <a href="/">🍽️ Moje Recepty</a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Domov</a></li>
+                <li><a href="/recepty">Recepty</a></li>
+                <li><a href="/o-nas">O nás</a></li>
+                <li><a href="/kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+        <form>
+            <input type="text" name="q" placeholder="Hľadať recept...">
+            <button type="submit">🔍</button>
+        </form> 
 
-    <h1>Odoslať novy recept na server</h1>
-    <button id="sendButton">Odoslať recept</button>
+    </div>
+
+    <div class="main">
+        <div class="main-header">
+            <h1 class="main-nadpis">Vitajte na nasej stranke s receptami</h1>
+            <p class="main-info">
+                Stranka obsahuje zoznam receptov rozdelenych podla kategorie<br>
+                Stranka taktiez ponuka pridavanie novych receptov
+            </p>
+        </div>
+        <div class="main-card">
+            <div class="recepty">
+                <h2>Nase recepty</h2>
+                <div class="recepty-container">
+                    <div class="recepty-header">
+                        <nav class="recepty-nav">
+                            <ul class="recepty-zoznam">
+                                <li><a class="recepty-kategorie" href="">Ranajky</a></li>
+                                <li><a class="recepty-kategorie" href="">Obedy</a></li>
+                                <li><a class="recepty-kategorie" href="">Vecere</a></li>
+                                <li><a class="recepty-kategorie" href="">Dezerty</a></li>
+                                <li><a class="recepty-kategorie" href="">Svacinky</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="list-of-recepts">
+                        <div class="recept">
+                            <div class="recept-left">
+                                <img src="/img/backgroundImage.jpg" alt="">
+                            </div>
+                            <div class="recept-right">
+                                <h3>Tu bude nazov receptu</h3>
+                                <h4>Potrebne ingrediencie</h4>
+                                <p>Podrobny navod daneho receptu</p>
+                            </div>
+                        </div>
+                        <div class="recept">
+                            <div class="recept-left">
+                                <img src="/img/backgroundImage.jpg" alt="">
+                            </div>
+                            <div class="recept-right">
+                                <h3>Tu bude nazov receptu</h3>
+                                <h4>Potrebne ingrediencie</h4>
+                                <p>Podrobny navod daneho receptu</p>
+                            </div>
+                        </div>
+                        <div class="recept">
+                            <div class="recept-left">
+                                <img src="/img/backgroundImage.jpg" alt="">
+                            </div>
+                            <div class="recept-right">
+                                <h3>Tu bude nazov receptu</h3>
+                                <h4>Potrebne ingrediencie</h4>
+                                <p>Podrobny navod daneho receptu</p>
+                            </div>
+                        </div>
+                        <div class="recept">
+                            <div class="recept-left">
+                                <img src="/img/backgroundImage.jpg" alt="">
+                            </div>
+                            <div class="recept-right">
+                                <h3>Tu bude nazov receptu</h3>
+                                <h4>Potrebne ingrediencie</h4>
+                                <p>Podrobny navod daneho receptu</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="zobraz-cely-recept">
+                <h2>Vybrany recept</h2>
+                <div class="zobrazit-recept-container">
+                    <h2 class="nazov">
+                        Nazov receptu
+                    </h2>
+                    <h3>
+                        Ingrediencie
+                    </h3>
+                    <p>
+                        Jednotlive kroky k danemu receptu
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+        <div class="serverInfo">
+            <h1>Moja stránka s Express serverom</h1>
+            <p id="message">Načítavam správu...</p>
+        
+            <h1>Odoslať novy recept na server</h1>
+            <button id="sendButton">Odoslať recept</button>
+        </div>
+
+    </div>
+    <div class="footer">
+
+    </div>
 
 
     <script src="script.js"></script>
