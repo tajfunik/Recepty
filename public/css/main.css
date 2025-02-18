@@ -77,8 +77,8 @@ form button:hover {
     font-size: 1.8rem;
 }
 .main-card{
-    width: 80%;
-    height: 35rem;
+    width: 85%;
+    height: 42rem;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
@@ -98,8 +98,7 @@ form button:hover {
 .recepty-container{
     width: 90%;
     margin: 0 auto;
-    height: 30rem;
-    padding-top: 0.5rem;
+    height: 37rem;
     background-color: rgb(255, 253, 250);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Pridanie tieňa */
     transform: translateY(-5px); /* Jemné zdvihnutie karty */
@@ -107,7 +106,8 @@ form button:hover {
     overflow: hidden;
 }
 .recepty-header{
-    background-color: #f6b77b;
+    background-color: #f9d0ab;
+    padding: 1rem 0;
 }
 .recepty-nav{
     display: flex;
@@ -127,6 +127,9 @@ form button:hover {
     transition: 0.3s;
     font-weight: 600;
 }
+.recepty-zoznam a:hover {
+    color: #e64a00;
+}
 
 .list-of-recepts{
     width: 90%;
@@ -143,7 +146,7 @@ form button:hover {
 /*----------------------------------------Dany recept----------------------------*/
 .recept{
     width: 100%;
-    height: 7rem;
+    height: 8rem;
     overflow: hidden;
     display: flex;
     flex-direction: row;
@@ -179,11 +182,25 @@ form button:hover {
 .zobrazit-recept-container{
     width: 90%;
     margin: 0 auto;
-    height: 30rem;
-    padding: 1rem;
+    height: 37rem;
+    padding: 0 1rem;
     background-color: rgb(255, 253, 250);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Pridanie tieňa */
     transform: translateY(-5px); /* Jemné zdvihnutie karty */
     border-radius: 0.5rem;
     overflow: hidden;
+}
+
+.recept-detail {
+    height: 32rem;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    background: #fff5e6;
+    border-radius: 0.5rem;
+}
+.recept-detail img {
+    width: 100%;
+    max-height: 12rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
 }

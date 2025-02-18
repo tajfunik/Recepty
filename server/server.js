@@ -1,4 +1,4 @@
-const express = require('express');
+import express from 'express';
 const app = express();
 const PORT = 3000;
 
@@ -6,25 +6,60 @@ app.use(express.static('public')) // Spracovanie vsetkych statickych suborov v "
 app.use(express.json());  // Middleware na spracovanie JSON
 
 
-let recepies = []
+/*----------------------------------------Spustenie databazy-------------------------------- */
+// Importovanie mongoose
+import mongoose from 'mongoose';
+import Recept from './models/recept.js'; // Import modelu
 
+// Pripojenie k MongoDB
+const uri = 'mongodb://localhost:27017/recepty';  // adresa k tvojej lokálnej databáze
+
+// Pripojenie pomocou mongoose
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {
+    console.log('Pripojenie k MongoDB úspešné!');
+  })
+  .catch((err) => {
+    console.log('Chyba pri pripojení k MongoDB:', err);
+  });
+
+
+
+
+
+/*-------------------------------------------------Praca s URL cez API---------------------------------------------- */
 // API endpoint na získanie údajov z URL adresy localhost:3000/recepty
-app.get('/recepty', (req, res) => {
-    res.json(recepies)
-    //res.json({ message: "Ahoj! Toto je odpoveď zo servera. Mal by si vidiet zoznam vsetkych receptov" });
-});
+app.get('/recepty', async (req, res) => {
+    try {
+      const recepty = await Recept.find(); // Načíta všetky recepty z databázy
+      res.status(200).json(recepty);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Chyba pri načítaní receptov' });
+    }
+  });
 
 
 //POST request na vytvorenie receptu a pridanie do zoznamu receptov
-app.post('/recepty', (req, res) => {
-    const newRecipe = req.body;  // Dáta poslané klientom (obsah POST požiadavky)
-    console.log("Prijaté dáta:", newRecipe);  // Môžeš si ich vypísať v konzole
-
-    // Tu môžeš spracovať dáta, uložiť ich do databázy atď.
-    recepies.push(newRecipe)
-    console.log(`Novy recept bol pridany k ostatnym`)
-    res.status(201).json({ message: "Recept bol pridany!", recipe: newRecipe });
-});
+app.post('/recepty', async (req, res) => {
+    try {
+      const { category, title, ingredients, jednotlive_kroky, obrazok } = req.body;
+  
+      const recept = new Recept({
+        category,
+        title,
+        ingredients,
+        jednotlive_kroky,
+        obrazok,
+      });
+  
+      await recept.save(); // Uloží recept do databázy
+      res.status(201).json({ message: 'Recept bol úspešne pridaný!' });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Chyba pri pridávaní receptu' });
+    }
+  });
 
 
 

@@ -9,16 +9,16 @@
 </head>
 <body>
 
-    <div class="header">
+    <div class="header" id="domov">
         <div class="logo">
             <a href="/">🍽️ Moje Recepty</a>
         </div>
         <nav>
             <ul>
-                <li><a href="/">Domov</a></li>
-                <li><a href="/recepty">Recepty</a></li>
-                <li><a href="/o-nas">O nás</a></li>
-                <li><a href="/kontakt">Kontakt</a></li>
+                <li><a href=#domov">Domov</a></li>
+                <li><a href="#recepty">Recepty</a></li>
+                <li><a href="">O nás</a></li>
+                <li><a href="">Kontakt</a></li>
             </ul>
         </nav>
         <form>
@@ -36,7 +36,7 @@
                 Stranka taktiez ponuka pridavanie novych receptov
             </p>
         </div>
-        <div class="main-card">
+        <div class="main-card" id="recepty">
             <div class="recepty">
                 <h2>Nase recepty</h2>
                 <div class="recepty-container">
@@ -44,44 +44,14 @@
                         <nav class="recepty-nav">
                             <ul class="recepty-zoznam">
                                 <li><a class="recepty-kategorie" href="">Ranajky</a></li>
-                                <li><a class="recepty-kategorie" href="">Obedy</a></li>
-                                <li><a class="recepty-kategorie" href="">Vecere</a></li>
+                                <li><a class="recepty-kategorie" href="">Obed</a></li>
+                                <li><a class="recepty-kategorie" href="">Vecera</a></li>
                                 <li><a class="recepty-kategorie" href="">Dezerty</a></li>
                                 <li><a class="recepty-kategorie" href="">Svacinky</a></li>
                             </ul>
                         </nav>
                     </div>
                     <div class="list-of-recepts">
-                        <div class="recept">
-                            <div class="recept-left">
-                                <img src="/img/backgroundImage.jpg" alt="">
-                            </div>
-                            <div class="recept-right">
-                                <h3>Tu bude nazov receptu</h3>
-                                <h4>Potrebne ingrediencie</h4>
-                                <p>Podrobny navod daneho receptu</p>
-                            </div>
-                        </div>
-                        <div class="recept">
-                            <div class="recept-left">
-                                <img src="/img/backgroundImage.jpg" alt="">
-                            </div>
-                            <div class="recept-right">
-                                <h3>Tu bude nazov receptu</h3>
-                                <h4>Potrebne ingrediencie</h4>
-                                <p>Podrobny navod daneho receptu</p>
-                            </div>
-                        </div>
-                        <div class="recept">
-                            <div class="recept-left">
-                                <img src="/img/backgroundImage.jpg" alt="">
-                            </div>
-                            <div class="recept-right">
-                                <h3>Tu bude nazov receptu</h3>
-                                <h4>Potrebne ingrediencie</h4>
-                                <p>Podrobny navod daneho receptu</p>
-                            </div>
-                        </div>
                         <div class="recept">
                             <div class="recept-left">
                                 <img src="/img/backgroundImage.jpg" alt="">
@@ -99,18 +69,15 @@
             <div class="zobraz-cely-recept">
                 <h2>Vybrany recept</h2>
                 <div class="zobrazit-recept-container">
-                    <h2 class="nazov">
-                        Nazov receptu
-                    </h2>
-                    <h3>
-                        Ingrediencie
-                    </h3>
-                    <p>
-                        Jednotlive kroky k danemu receptu
-                    </p>
-
+                    <h2 class="detail-title">Nazov receptu</h2>
+                    <div class="recept-detail">
+                        <img class="detail-img" src="" alt="">
+                        <h4></h4>
+                        <p class="detail-ingredients"></p>
+                        <h4></h4>
+                        <p class="detail-steps"></p>
+                    </div>
                 </div>
-
             </div>
 
         </div>
@@ -120,6 +87,21 @@
         
             <h1>Odoslať novy recept na server</h1>
             <button id="sendButton">Odoslať recept</button>
+            <div class="formular">
+                <form id="recipe-form">
+                    <label for="title">Názov receptu:</label>
+                    <input type="text" id="title" name="title" required><br>
+                    <label for="category">Kategória:</label>
+                    <input type="text" id="category" name="category" required><br>                 
+                    <label for="ingredients">Ingrediencie:</label>
+                    <textarea id="ingredients" name="ingredients" required></textarea><br>                 
+                    <label for="steps">Postup:</label>
+                    <textarea id="steps" name="steps" required></textarea><br>                 
+                    <label for="image">Obrázok (URL):</label>
+                    <input type="text" id="image" name="image"><br>               
+                    <button type="submit">Pridať recept</button>
+                  </form>
+            </div>
         </div>
 
     </div>
@@ -128,6 +110,6 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script type="module" src="script.js"></script>
 </body>
 </html>
