@@ -34,9 +34,6 @@ document.getElementById('registration-form').addEventListener('submit', function
         menoInput.value = "";
         hesloInput.value = "";
 
-         // ✅ Alternatívny spôsob vymazania (ak predošlé nefunguje)
-         document.getElementById('registration-form').reset();
-
     })
     .catch(error => {
         console.error("Chyba pri pridávaní noveho usera:", error);  // Ošetrenie chyby
