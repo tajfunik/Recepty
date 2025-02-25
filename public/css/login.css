@@ -1,0 +1,64 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* 100vh na celú výšku obrazovky */
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    max-width: 50rem; /* Maximálna šírka kontejnera */
+    background: white;
+    box-shadow: 0 0.125rem 0.625rem rgba(0, 0, 0, 0.1);
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+.form-container {
+    padding: 2rem; /* Padding pre formulár */
+    flex: 1;
+}
+
+h2 {
+    margin-bottom: 1.5rem; /* Vzdialenosť pod nadpisom */
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem; /* Vzdialenosť pod štítkom */
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 1rem; /* Padding pre vstupné pole */
+    margin-bottom: 1rem; /* Vzdialenosť pod vstupným poľom */
+    border: 0.0625rem solid #ddd; /* Hrúbka okraja */
+    border-radius: 0.25rem; /* Rádius okrajov */
+}
+
+button {
+    width: 100%;
+    padding: 1rem; /* Padding pre tlačidlo */
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 0.25rem; /* Rádius okrajov pre tlačidlo */
+    cursor: pointer;
+    font-size: 1rem; /* Veľkosť písma pre tlačidlo */
+}
+
+button:hover {
+    background-color: #218838; /* Zmena farby tlačidla pri hover */
+}

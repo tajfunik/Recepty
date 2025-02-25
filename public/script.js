@@ -31,6 +31,7 @@ function zobrazRecepty(array){
         listOfRecepies.appendChild(receptDiv);
     });
 }
+
 //Osetrenie ak kliknem na "a" element aby nas nehadzalo na zaciatok stranky
 //Zobrazenie hodnoty daneho "a" elementu
 //Zavolanie funkcie na zobrazenie receptov podla "kategorie"
@@ -65,7 +66,7 @@ listOfRecepies.addEventListener('click', function(event) {
 
 
 
-//---------------------------------------------------Komunikacia s databazou, pridavanie objektov do databazy
+//---------------------------------------------------Posielanie dat na server cez Fetch--------------------------------
 // Definícia modelu pre recepty
 // 1. Pridáme event listener na formulár, aby sme zachytili jeho odoslanie.
 document.getElementById("recipe-form").addEventListener("submit", function(event) {
@@ -73,32 +74,33 @@ document.getElementById("recipe-form").addEventListener("submit", function(event
     event.preventDefault();
 
     // 3. Získame hodnoty z formulára pomocou document.querySelector()
-    const title = document.querySelector("#title").value;  // Získame hodnotu z inputu pre názov receptu
-    const category = document.querySelector("#category").value;  // Získame hodnotu z inputu pre kategóriu
-    const ingredients = document.querySelector("#ingredients").value;  // Získame ingrediencie z textarea
-    const steps = document.querySelector("#steps").value;  // Získame postup receptu z textarea
-    const image = document.querySelector("#image").value;  // Získame obrázok (voliteľný) z inputu
+    const categoryForm = document.querySelector("#category").value;  // Získame hodnotu z inputu pre kategóriu
+    const titleForm = document.querySelector("#title").value;  // Získame hodnotu z inputu pre názov receptu
+    const ingredientsForm = document.querySelector("#ingredients").value;  // Získame ingrediencie z textarea
+    const jednotlive_krokyForm = document.querySelector("#steps").value;  // Získame postup receptu z textarea
+    const imageForm = document.querySelector("#image").value;  // Získame obrázok (voliteľný) z inputu
 
-    // 4. Vytvoríme objekt s dátami
-    const recipeData = {
-        title: title,
-        category: category,
-        ingredients: ingredients,
-        steps: steps,
-        image: image,
+    // 4. Vytvoríme objekt s dátami do ktoreho vlozime nami vytiahnute data z formulara v predchadzajucom kroku
+    const newRecipeData = {
+        category: categoryForm,
+        title: titleForm,
+        ingredients: ingredientsForm,
+        jednotlive_kroky: jednotlive_krokyForm,
+        image: imageForm,
     };
 
-    // 5. Posielame dáta na server cez fetch API
-    fetch("/api/recipes", {  // URL, na ktorú posielame požiadavku
+    // 5. Posielame dáta O novom Recepte na server zo stranky cez fetch API
+    fetch("/api/recepty", {  // URL, na ktorú posielame požiadavku
         method: "POST",  // Používame metódu POST, pretože chceme vytvoriť nový záznam
         headers: {
             "Content-Type": "application/json",  // Posielame dáta v JSON formáte
         },
-        body: JSON.stringify(recipeData),  // Prevod objektu na JSON
+        body: JSON.stringify(newRecipeData),  // Prevod objektu na JSON
     })
     .then(response => response.json())  // Čakáme na odpoveď zo servera a parsujeme ju ako JSON
     .then(data => {
         console.log("Recept bol pridaný:", data);  // Úspešná odpoveď zo servera
+        console.log(newRecipeData)
     })
     .catch(error => {
         console.error("Chyba pri pridávaní receptu:", error);  // Ošetrenie chyby
@@ -108,6 +110,24 @@ document.getElementById("recipe-form").addEventListener("submit", function(event
 
 
 
+//-------------------------------------------Prijimanie dat z databazy na server a na hlavnu stranku ---------------------------------------
+// Funkcia na načítanie receptov z databázy
+async function getReceptsFromDB() {
+    try {
+        const response = await fetch('http://localhost:3000/api/recepty');
+        if (!response.ok) {
+            throw new Error('Chyba pri načítaní receptov');
+        }
+        const recipes = await response.json(); // Načítanie JSON dát
+        zobrazRecepty(recipes); // Zobrazenie receptov na stránke
+        console.log(recipes)
+        return recipes
+    } catch (error) {
+        console.error('Chyba:', error);
+    }
+}
+//Nacitaj vsetky recepty z databazy a pridaj ich na stranku pri nacitani stranky
+document.addEventListener('DOMContentLoaded', getReceptsFromDB);
 
 
 

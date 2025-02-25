@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/login.css">
+    <title>Login/Registration Recepty</title>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Prihlásenie</h2>
+            <form id="login-form">
+                <label for="login-name">Meno</label>
+                <input type="text" id="login-name" required>
+                
+                <label for="login-password">Heslo:</label>
+                <input type="password" id="login-password" required>
+                
+                <button type="submit">Prihlásiť sa</button>
+            </form>
+        </div>
+
+        <div class="form-container">
+            <h2>Registrácia</h2>
+            <form id="registration-form">
+                <label for="register-name">Meno:</label>
+                <input type="text" id="register-name" required>
+                
+                <label for="register-password">Heslo:</label>
+                <input type="password" id="register-password" required>
+                
+                <button type="submit">Zaregistrovať sa</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="login.js" defer></script>
+    
+</body>
+</html>
