@@ -1,22 +1,22 @@
 import express from 'express';
-
 const app = express();
 const PORT = 3000;
 
-// Importovanie mongoose
+// Importovanie mongoose pre databazu
 import mongoose from 'mongoose';
 
 //importovanie funkcii z Routes
 import recipeRoutes from './routes/recipeRoutes.js';
 import userRoutes from './routes/userRoutes.js'
 
-app.use(express.static('public')) // Spracovanie vsetkych statickych suborov v "public" adresari
-app.use(express.json());  // Middleware na spracovanie JSON
+// Spracovanie vsetkych statickych suborov v "public" adresari
+app.use(express.static('public')) 
+// Middleware na spracovanie JSON
+app.use(express.json());  
 
 
 
-
-/*----------------------------------------Spustenie databazy-------------------------------- */
+/*----------------------------------------Spustenie mongoDB databazy-------------------------------- */
 
 // Pripojenie k MongoDB
 const uri = 'mongodb://localhost:27017/recepty';  // adresa k tvojej lokálnej databáze
@@ -29,23 +29,32 @@ mongoose.connect(uri)
   });
 
 
+/*----------------------------------------Mapovanie na konkretne routes-------------------------------- */
 // Používame route pre vytvorene kolekcie (recepty, users)
 app.use('/api', recipeRoutes);
-app.use('/api', userRoutes)
-;
+app.use('/api', userRoutes);
 
+
+
+/*----------------------------------------Pridavanie jednotlivych URL adries-------------------------------- */
 // Pridanie routy pre domovskú stránku
+// Odošli index.html súbor z adresára public
 app.get('/', (req, res) => {
-  res.sendFile('index.html', { root: 'public' }); // Odošli index.html súbor z adresára public
+  res.sendFile('index.html', { root: 'public' }); 
 });
 
 // Pridanie routy pre login
+// Odošli login.html súbor z adresára public
 app.get('/login', (req, res) => {
-  res.sendFile('login.html', { root: 'public' }); // Odošli login.html súbor z adresára public
+  res.sendFile('login.html', { root: 'public' }); 
+});
+
+app.get('/registracia', (req, res) => {
+  res.sendFile('registracia.html', { root: 'public' }); 
 });
 
 
-//  Spustenie servera
+// Spustenie servera
 app.listen(PORT, () => {
   console.log(`Server beží na http://localhost:${PORT}`);
 });
