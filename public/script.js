@@ -8,6 +8,21 @@ const selectedReceptSteps =  document.querySelector('.detail-steps')
 import { recepty } from '../vsetkyRecepty.js';
 
 
+//Odhlasenie sa 
+document.getElementById('logout-btn').addEventListener("click", function(){
+    localStorage.removeItem("loggedInUser");
+    window.location.href = "/login";
+})
+//Nastavenie mena "User" v headri prihlaseneho uzivatela 
+//Nacitavame si ho z localStorage kde sme si ho ulozili pocas prihlasenia
+window.addEventListener("load", () => {
+    const user = localStorage.getItem("loggedInUser");
+    if (user) {
+        document.getElementById("logged-in-user").textContent = user;
+    }
+});
+
+
 //Funkcia ktora nam zobrazuje recepty z casti "Nase recepty"
 //zavolame ju po kliknuti konkretnej kategorie
 function zobrazRecepty(array){
