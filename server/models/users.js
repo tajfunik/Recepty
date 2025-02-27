@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 // Definovanie schémy pre usera
 const userSchema = new mongoose.Schema({
     meno: { type: String, required: true, unique: true },
+    email: {type: String, required: true, unique: true },
     heslo: { type: String, required: true },
 });
 

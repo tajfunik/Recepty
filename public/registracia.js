@@ -4,11 +4,13 @@ document.getElementById('registration-form').addEventListener('submit', function
     e.preventDefault()
 
     const menoInput = document.getElementById('register-name');
+    const emailInput = document.getElementById('register-email')
     const hesloInput = document.getElementById('register-password');
 
     // Získanie ich hodnôt
     // Odstránenie prázdnych miest
     const menoForm = menoInput.value.trim();  
+    const emailForm = emailInput.value.trim()
     const hesloForm = hesloInput.value.trim();
 
     if (!menoForm || !hesloForm) {
@@ -18,6 +20,7 @@ document.getElementById('registration-form').addEventListener('submit', function
 
     const newUser = {
         meno: menoForm,
+        email: emailForm,
         heslo: hesloForm
     }
 
@@ -34,6 +37,7 @@ document.getElementById('registration-form').addEventListener('submit', function
         console.log("User bol pridaný:", data);
 
         menoInput.value = "";
+        emailInput.value = "";
         hesloInput.value = "";
 
     })

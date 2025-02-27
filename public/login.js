@@ -1,56 +1,42 @@
 
-
-//-------------------------------------------Prijimanie dat z databazy na server a na hlavnu stranku ---------------------------------------
-// Funkcia na načítanie Users z databázy
-async function getAllUsersFromDB() {
+//Vytiahneme si udaje z Login formulara
+//Posleme ich na server ako Objekt
+//Ulozime si do LocalStorage meno uzivatela
+//Vymazeme hodnoty vo formulare
+document.getElementById("login-form").addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const nameFromLogin = document.getElementById('login-name').value;
+    const hesloFromLogin = document.getElementById('login-password').value;
+    
+    if (!nameFromLogin || !hesloFromLogin) {
+        alert(`Zadajte prosím všetky údaje`);
+        return;
+    }
+    
     try {
-        const response = await fetch('http://localhost:3000/api/users');
+        const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ meno: nameFromLogin, heslo: hesloFromLogin })
+        });
+
+        const data = await response.json();
+
         if (!response.ok) {
-            throw new Error('Chyba pri načítaní userov');
-        }
-        // Načítanie JSON dát
-        const users = await response.json(); 
-        return users
-    } catch (error) {
-        console.error('Chyba:', error);
-    }
-}
-
-//Funkcia na prihlasenie
-//Zoberie vsetkych pouzivatelov ulozenych v databaze a porovna ich s aktualnymi credentials
-//Ak je zhoda, prehodi nas to na hlavnu stranku
-//Ulozi meno pouzivatela do Localstorage pre nasledujuce pouzitie po nacitani stranky (zobrazi meno pouzivatela na hlavnej stranke)
-document.getElementById("login-form").addEventListener('submit', async function(e){
-    e.preventDefault()
-    
-    const nameFromLogin = document.getElementById('login-name').value
-    const hesloFromLogin = document.getElementById('login-password').value
-    
-    if(!nameFromLogin || !hesloFromLogin){
-        alert(`Zadajte prosim vsetky udaje`)
-        return
-    }
-    
-    try {
-        const users = await getAllUsersFromDB(); // Počkáme na odpoveď z databázy
-        if (!users || users.length === 0) {
-            alert("V databáze sa nenachádzajú žiadni užívatelia.");
+            alert(data.message || 'Chyba pri prihlásení');
             return;
         }
 
-        users.forEach((user) => {
-            if (user.meno === nameFromLogin && user.heslo === hesloFromLogin) {
-                //musim si meno odlozit do localstorage na nasledovne pridanie na stranku po jej nacitani
-                localStorage.setItem("loggedInUser", user.meno);
-                // Presmerovanie na hlavnú stránku
-                window.location.href = "/";
-            }
-        });
+        localStorage.setItem("loggedInUser", data.user.meno);
+        window.location.href = "/"; // Presmerovanie na hlavnú stránku
 
-        nameFromLogin.value = ""
-        hesloFromLogin.value = ""
+        document.getElementById('login-name').value = "";
+        document.getElementById('login-password').value = "";
 
     } catch (error) {
-        console.error("Chyba pri načítaní užívateľov:", error);
+        console.error("Chyba pri prihlásení:", error);
     }
-})
+});
