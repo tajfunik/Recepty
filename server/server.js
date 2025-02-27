@@ -9,6 +9,10 @@ import mongoose from 'mongoose';
 import recipeRoutes from './routes/recipeRoutes.js';
 import userRoutes from './routes/userRoutes.js'
 
+//importovanie middleware-ov
+import loggerMiddleware from './middleware/logMiddleware.js'
+import authMiddleware from './middleware/authMiddleware.js'
+
 // Spracovanie vsetkych statickych suborov v "public" adresari
 app.use(express.static('public')) 
 // Middleware na spracovanie JSON
@@ -34,6 +38,8 @@ mongoose.connect(uri)
 app.use('/api', recipeRoutes);
 app.use('/api', userRoutes);
 
+app.use(loggerMiddleware)
+app.use('login', authMiddleware)
 
 
 /*----------------------------------------Pridavanie jednotlivych URL adries-------------------------------- */

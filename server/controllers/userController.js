@@ -1,7 +1,8 @@
 import bcrypt from 'bcrypt';
 import User from '../models/users.js';
 
-
+//Vypiseme vsetkych userov v nasej databaze
+//Pouzivame nato GET request v Postmanovi
 export const getallUsers = async (req, res) =>{
     try {
         // Získanie všetkých Userov z databázy
@@ -14,6 +15,10 @@ export const getallUsers = async (req, res) =>{
     }
 }
 
+//Funkcia na vytvorenie noveho usera v Registracnom formulari
+//Kontrola spravneho tvaru emailu
+//Zasehovanie hesla 
+//Ulozenie do databazy
 export const createUser = async (req, res) => {
     const { meno, email,  heslo } = req.body;
     const saltRounds = 10;  // Počet opakovaní hashovania
@@ -42,6 +47,8 @@ export const createUser = async (req, res) => {
     }
 };
 
+//Vymazaie usera na zaklade ID
+//Pouzivame nato POST request v Postmanovi
 export const deleteUser = async (req, res) => {
     const {id} = req.params;
     try{
@@ -58,6 +65,9 @@ export const deleteUser = async (req, res) => {
     }
 }
 
+//Kontrola pouzivatela v Login formulari
+//Vytiahneme si uzivatela na zaklademena z nasej zadabazy
+//Kontrola hesla
 export const checkUserOnLogin = async (req, res) => {
     const { meno, heslo } = req.body;
     try {
