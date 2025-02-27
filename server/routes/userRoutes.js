@@ -1,5 +1,4 @@
 import express from 'express';
-import bcrypt from 'bcrypt';
 import { getallUsers, createUser, deleteUser, checkUserOnLogin } from '../controllers/userController.js';
 
 const router = express.Router();

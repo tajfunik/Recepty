@@ -15,6 +15,7 @@ document.getElementById("login-form").addEventListener('submit', async function(
     }
     
     try {
+        //Posielame poziadavku na server na danu URL adresu
         const response = await fetch('http://localhost:3000/api/login', {
             method: 'POST',
             headers: {
@@ -22,7 +23,7 @@ document.getElementById("login-form").addEventListener('submit', async function(
             },
             body: JSON.stringify({ meno: nameFromLogin, heslo: hesloFromLogin })
         });
-
+        //Ziskavanie odpovede zo servera vo formate JSON
         const data = await response.json();
 
         if (!response.ok) {
@@ -31,6 +32,8 @@ document.getElementById("login-form").addEventListener('submit', async function(
         }
 
         localStorage.setItem("loggedInUser", data.user.meno);
+        localStorage.setItem("token", data.token);
+        console.log("JWT Token:", data.token);
         window.location.href = "/"; // Presmerovanie na hlavnú stránku
 
         document.getElementById('login-name').value = "";
@@ -40,3 +43,5 @@ document.getElementById("login-form").addEventListener('submit', async function(
         console.error("Chyba pri prihlásení:", error);
     }
 });
+
+

@@ -10,8 +10,7 @@ import recipeRoutes from './routes/recipeRoutes.js';
 import userRoutes from './routes/userRoutes.js'
 
 //importovanie middleware-ov
-import loggerMiddleware from './middleware/logMiddleware.js'
-import authMiddleware from './middleware/authMiddleware.js'
+import middlewareRoutes from './routes/authMiddlewareRoutes.js'
 
 // Spracovanie vsetkych statickych suborov v "public" adresari
 app.use(express.static('public')) 
@@ -37,9 +36,7 @@ mongoose.connect(uri)
 // Používame route pre vytvorene kolekcie (recepty, users)
 app.use('/api', recipeRoutes);
 app.use('/api', userRoutes);
-
-app.use(loggerMiddleware)
-app.use('login', authMiddleware)
+app.use('/api', middlewareRoutes)
 
 
 /*----------------------------------------Pridavanie jednotlivych URL adries-------------------------------- */
@@ -54,11 +51,18 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile('login.html', { root: 'public' }); 
 });
-
+// Pridanie routy pre Registraciu
+// Odošli registracia.html súbor z adresára public
 app.get('/registracia', (req, res) => {
   res.sendFile('registracia.html', { root: 'public' }); 
 });
 
+
+
+//osetrenie na vsetky ine mozne zadane URL adresy na ktore nemame urobene konkretne routy
+app.use('*', (req, res) => {
+  res.status(404).send({message: `Upsss!! Zle zadana URL adresa, prosim skontrolujte si ju`})
+})
 
 // Spustenie servera
 app.listen(PORT, () => {

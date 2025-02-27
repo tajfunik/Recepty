@@ -1,5 +1,8 @@
 import bcrypt from 'bcrypt';
 import User from '../models/users.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv'
+dotenv.config()
 
 //Vypiseme vsetkych userov v nasej databaze
 //Pouzivame nato GET request v Postmanovi
@@ -68,6 +71,7 @@ export const deleteUser = async (req, res) => {
 //Kontrola pouzivatela v Login formulari
 //Vytiahneme si uzivatela na zaklademena z nasej zadabazy
 //Kontrola hesla
+//Generovanie JWT tokenu a jeho vratenie
 export const checkUserOnLogin = async (req, res) => {
     const { meno, heslo } = req.body;
     try {
@@ -81,7 +85,12 @@ export const checkUserOnLogin = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ message: 'Nesprávne heslo' });
         }
-        res.status(200).json({ message: 'Prihlásenie úspešné', user });
+
+        // Generovanie JWT tokenu
+        const token = jwt.sign({ id: user._id, meno: user.meno }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Vrátenie tokenu a používateľských údajov
+        res.json({ token, user: { meno: user.meno } });
+
     } catch (error) {
         res.status(500).json({ message: 'Chyba pri prihlásení', error });
     }
