@@ -24,3 +24,19 @@ export const createUser = async (req, res) => {
         res.status(400).json({ message: 'Chyba pri pridávaní užívateľa', error });
     }
 };
+
+export const deleteUser = async (req, res) => {
+    const {id} = req.params;
+    try{
+        const deletedUser = await User.findByIdAndDelete(id);
+
+        if(deletedUser){
+            return res.status(200).json({message: `Uzivatel uspesne vymazany`, deletedUser})
+        } else {
+            res.status(404).json({ message: 'Uzivatel nenájdený.' });
+        }
+
+    } catch(error) {
+        res.status(400).json({message: `Uzivatel nenajdeny, prosim skuste pouzit ine ID`, error})
+    }
+}
