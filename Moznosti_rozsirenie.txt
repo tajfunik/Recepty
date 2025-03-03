@@ -1,6 +1,6 @@
 1. Správa používateľského profilu
-Možnosť upravovať profil (meno, e-mail, heslo, profilový obrázok).
 Reset hesla (napríklad cez e-mail s tokenom).
+
 2. Ochrana a správa relácií
 Automatické odhlásenie po určitom čase nečinnosti.
 Obnova relácie – napr. cez refresh token alebo trvalé prihlásenie.

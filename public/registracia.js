@@ -13,7 +13,7 @@ document.getElementById('registration-form').addEventListener('submit', function
     const emailForm = emailInput.value.trim()
     const hesloForm = hesloInput.value.trim();
 
-    if (!menoForm || !hesloForm) {
+    if (!menoForm || emailForm || !hesloForm) {
         alert("Prosím, vyplňte všetky polia.");
         return; 
     }

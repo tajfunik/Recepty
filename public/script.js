@@ -5,7 +5,6 @@ const selectedReceptImg =  document.querySelector('.detail-img')
 const selectedReceptIngredients = document.querySelector('.detail-ingredients')
 const selectedReceptSteps =  document.querySelector('.detail-steps')
 
-import { recepty } from '../vsetkyRecepty.js';
 
 
 //Odhlasenie sa 
@@ -13,6 +12,7 @@ document.getElementById('logout-btn').addEventListener("click", function(){
     localStorage.removeItem("loggedInUser");
     window.location.href = "/login";
 })
+
 //Nastavenie mena "User" v headri prihlaseneho uzivatela 
 //Nacitavame si ho z localStorage kde sme si ho ulozili pocas prihlasenia
 window.addEventListener("load", () => {
@@ -55,7 +55,7 @@ document.querySelectorAll('.recepty-kategorie').forEach(link => {
         event.preventDefault(); // Zabrání presmerovaniu na začiatok stránky
         
         const kategoria = this.textContent.trim(); // Získa názov kategórie (napr. "Raňajky")
-        let listNajdenych = recepty.filter((recept) => recept.category.toLowerCase() === kategoria.toLowerCase())
+        let listNajdenych = recipes.filter((recept) => recept.category.toLowerCase() === kategoria.toLowerCase())
         zobrazRecepty(listNajdenych)
     });
 });
@@ -69,7 +69,7 @@ listOfRecepies.addEventListener('click', function(event) {
     // Získanie názvu receptu
     const title = clickedRecept.querySelector('h3').textContent.trim();
     // Nájdeme recept podľa názvu v zozname
-    const recept = recepty.find(r => r.title === title);
+    const recept = recipes.find(r => r.title === title);
 
     if (recept) {
         selectedReceptTitle.textContent = recept.title;
@@ -123,17 +123,18 @@ document.getElementById("recipe-form").addEventListener("submit", function(event
 });
 
 
-
+let recipes = []
 
 //-------------------------------------------Prijimanie dat z databazy na server a na hlavnu stranku ---------------------------------------
 // Funkcia na načítanie receptov z databázy
 async function getReceptsFromDB() {
     try {
+        listOfRecepies.innerHTML = `<p>Načítavam recepty...</p>`;
         const response = await fetch('http://localhost:3000/api/recepty');
         if (!response.ok) {
             throw new Error('Chyba pri načítaní receptov');
         }
-        const recipes = await response.json(); // Načítanie JSON dát
+         recipes = await response.json(); // Načítanie JSON dát
         zobrazRecepty(recipes); // Zobrazenie receptov na stránke
         console.log(recipes)
         return recipes

@@ -5,6 +5,9 @@ const userSchema = new mongoose.Schema({
     meno: { type: String, required: true, unique: true },
     email: {type: String, required: true, unique: true },
     heslo: { type: String, required: true },
+    birthdate: { type: Date},
+    role: { type: String},
+    phoneNumber: { type: String},
 });
 
 // Vytvorenie modelu z definovanej schémy

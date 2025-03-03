@@ -41,7 +41,7 @@ export const getUserByID = async (req, res) => {
         });
 
         if(changedUser){
-            res.status(200).json({message: `Uzivatel bol updejtnuty`})
+            res.status(200).json({message: `Uzivatel bol updejtnuty`, user: changedUser})
             return
         } else {
             res.status(404).json({ message: 'Uzivatel nenájdený.' });

@@ -3,7 +3,9 @@
 //Posleme ich na server ako Objekt
 //Ulozime si do LocalStorage meno uzivatela
 //Vymazeme hodnoty vo formulare
-document.getElementById("login-form").addEventListener('submit', async function(e) {
+const loginFormular = document.getElementById("login-form")
+
+loginFormular.addEventListener('submit', async function(e) {
     e.preventDefault();
     
     const nameFromLogin = document.getElementById('login-name').value;

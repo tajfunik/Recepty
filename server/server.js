@@ -8,8 +8,6 @@ import mongoose from 'mongoose';
 //importovanie funkcii z Routes
 import recipeRoutes from './routes/recipeRoutes.js';
 import userRoutes from './routes/userRoutes.js'
-
-//importovanie middleware-ov
 import middlewareRoutes from './routes/authMiddlewareRoutes.js'
 
 // Spracovanie vsetkych statickych suborov v "public" adresari
