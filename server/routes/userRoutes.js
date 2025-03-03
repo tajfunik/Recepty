@@ -1,10 +1,11 @@
 import express from 'express';
 import { getallUsers, createUser, deleteUser, checkUserOnLogin } from '../controllers/userController.js';
+import authenticateToken from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 //Get endpoint na ziskanie vsetkych userov z databazy
-router.get('/users', getallUsers)
+router.get('/users', authenticateToken, getallUsers)
 
 // POST endpoint na registráciu nového užívateľa
 router.post('/users', createUser); 

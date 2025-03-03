@@ -12,7 +12,7 @@ const authenticateToken = (req, res, next) => {
     }
 
     // Overíme token s pomocou našej tajnej kľúče
-    jwt.verify(token, "tajnykluc", (err, user) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
         if (err) {
             // Ak je token neplatný, odpovieme 403 (Forbidden)
             return res.status(403).json({ message: 'Neplatný token.' });

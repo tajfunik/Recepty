@@ -1,0 +1,75 @@
+Popis projektu:
+
+1️⃣ Frontend – JavaScript (Login Form)
+ Login stránka (login.js)
+Používateľ vyplní meno a heslo
+Údaje sa odošlú na server pomocou fetch (POST request)
+Ak je prihlasovanie úspešné:
+Token sa uloží do localStorage
+Používateľ sa presmeruje na hlavnú stránku
+Ak je neúspešné → zobrazí sa chyba
+
+
+
+2️⃣ Backend – Node.js + Express + MongoDB
+
+1️. Nastavenie backendu
+Vytvorenie Express servera s pripojením na MongoDB cez Mongoose.
+Vytvorenie základnej štruktúry:
+routes/ – Definovanie API endpointov
+controllers/ – Logika pre spracovanie requestov
+models/ – Definícia schémy používateľov
+
+2️. Model používateľa (Mongoose Schema)
+Každý používateľ má:
+meno (string)
+email (string, validácia formátu)
+heslo (uložené ako hash)
+
+3. Registrácia používateľa (POST /api/register)
+Overenie, či sú zadané všetky údaje
+Kontrola formátu emailu
+Hashovanie hesla pomocou bcrypt
+Uloženie používateľa do databázy
+
+4️. Prihlásenie používateľa (POST /api/login)
+Overenie mena a hesla
+Generovanie JWT tokenu pomocou jsonwebtoken
+Odoslanie tokenu a mena používateľa vo formáte JSON
+
+5️. Middleware na overenie JWT tokenu
+Vytvorenie funkcie authenticateToken
+Extrakcia tokenu z hlavičky Authorization
+Overenie tokenu pomocou jwt.verify()
+Ak je platný → pokračuje na ďalší middleware
+Ak je neplatný → vráti chybu 403 Forbidden
+
+6️. Chránené API (GET /api/users)
+Používa middleware authenticateToken
+Vyhľadá všetkých používateľov v databáze (bez hesiel)
+Vráti zoznam používateľov iba ak je token platný
+
+
+
+3️⃣ Použitie JWT tokenu pri API requestoch
+Po prihlásení sa token uloží do localStorage
+Pri každej chránenej požiadavke (napr. GET /api/users) sa do hlavičky pridáva:
+js
+Copy
+Edit
+headers: { "Authorization": `Bearer ${token}` }
+Backend overí token a vráti dáta iba ak je platný
+
+
+4️⃣ Testovanie API v Postmane
+Registrácia – (POST /api/register)
+Prihlásenie – (POST /api/login) → získať token
+Chránený request – (GET /api/users) s Authorization headerom
+Overenie neplatného tokenu → musí vrátiť 403 Forbidden
+
+
+5️⃣Zhrnutie fungovania
+Používateľ sa registruje – heslo sa uloží hashované
+Používateľ sa prihlási – server vygeneruje a vráti JWT token
+Pri každom chránenom requeste sa token posiela v hlavičke
+Server overí token – ak je platný, vráti dáta, inak odmietne prístup

@@ -23,7 +23,9 @@ document.getElementById("login-form").addEventListener('submit', async function(
             },
             body: JSON.stringify({ meno: nameFromLogin, heslo: hesloFromLogin })
         });
+
         //Ziskavanie odpovede zo servera vo formate JSON
+        //Ak je uzivatel verifikovany, dostaneme response v ktorej su udaje o userovi a JWT token
         const data = await response.json();
 
         if (!response.ok) {
