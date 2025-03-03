@@ -18,6 +18,41 @@ export const getallUsers = async (req, res) =>{
     }
 }
 
+//Funkcia na zmenu udajov daneho usera na zaklade jeho ID
+// Získaš údaje na aktualizáciu z tela požiadavky
+// Kontrola spravneho formatu, napr. pre birthdate
+export const getUserByID = async (req, res) => {
+    const { id } = req.params; 
+    const updatedData = req.body; 
+
+    // Validácia dátumu narodenia (ak existuje)
+    if (updatedData.birthdate) {
+        const birthdateRegex = /^\d{4}-\d{2}-\d{2}$/; // Regex na formát YYYY-MM-DD
+        if (!birthdateRegex.test(updatedData.birthdate)) {
+            return res.status(400).json({ message: 'Neplatný formát dátumu narodenia. Formát musí byť YYYY-MM-DD.' });
+        }
+    }
+
+    try {
+        // Aktualizácia používateľa podľa ID
+        const changedUser = await User.findByIdAndUpdate(id, updatedData, {
+            new: true, // Vráti aktualizovaný dokument po aktualizácii
+            runValidators: true, // Overí validáciu modelu pri aktualizácii
+        });
+
+        if(changedUser){
+            res.status(200).json({message: `Uzivatel bol updejtnuty`})
+            return
+        } else {
+            res.status(404).json({ message: 'Uzivatel nenájdený.' });
+        }
+
+        res.status(200).json(allUsers);
+    } catch (error) {
+        res.status(500).json({ message: 'Chyba pri získavaní userov z databazy.' });
+    }
+}
+
 //Funkcia na vytvorenie noveho usera v Registracnom formulari
 //Kontrola spravneho tvaru emailu
 //Zasehovanie hesla 

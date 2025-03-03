@@ -1,0 +1,22 @@
+1. Správa používateľského profilu
+Možnosť upravovať profil (meno, e-mail, heslo, profilový obrázok).
+Reset hesla (napríklad cez e-mail s tokenom).
+2. Ochrana a správa relácií
+Automatické odhlásenie po určitom čase nečinnosti.
+Obnova relácie – napr. cez refresh token alebo trvalé prihlásenie.
+3. Role a oprávnenia
+Rozlíšenie medzi administrátorom a bežným používateľom.
+Administrátorské rozhranie na správu používateľov.
+4. Obsahová časť aplikácie
+Možnosť pridávať, upravovať a mazať nejaký obsah (napr. články, komentáre, produkty atď.).
+Implementácia filtrov a vyhľadávania.
+5. Realtime funkcie (ak je to relevantné)
+Notifikácie pre používateľov (napr. nové správy, schválenie príspevku).
+Live chat alebo komentárový systém.
+6. Bezpečnostné opatrenia
+Ochrana proti brute-force útokom (napr. obmedzenie pokusov o prihlásenie).
+Dvojfaktorová autentifikácia (2FA).
+Ukladanie hesiel pomocou bcrypt alebo iného hashovania.
+7. API (ak plánuješ rozšíriť projekt)
+Vytvorenie RESTful alebo GraphQL API.
+Možnosť integrovať aplikáciu s inými službami.
