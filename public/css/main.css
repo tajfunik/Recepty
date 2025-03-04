@@ -226,52 +226,40 @@ form button:hover {
 
 
 /*----------------------------------Formular na pridanie receptu ----------------------------------------*/
-.formular {
+/* Celá stránka – centrovanie obsahu */
+.serverInfo {
+    margin: 0 auto;
+    background-color: #f4f4f4; /* Svetlé pozadie */
+    min-height: 40rem;
+}
+.serverInfo h1{
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 2.5rem;
+}
+.serverFormular{
+    width: 50%;
+    margin: 0 auto;
+    height: auto;
+    background-color: rgb(246, 213, 213);
+    padding: 2rem;
+}
+
+.formularNaVytvorenie{
+    width: 60%;
+    margin: 0 auto;
     display: flex;
-    justify-content: center; /* Horizontálne centrovanie */
-    align-items: center; /* Vertikálne centrovanie */
-    height: 100vh; /* Výška na celú obrazovku */
+    flex-direction: column;
+    margin-top: 1.5rem;
 }
 
-form {
-    width: 100%;
-    max-width: 400px; 
-    background-color: #f9f9f9; 
-    padding: 20px;
-    border-radius: 10px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný tieň */
-}
-
-/* Štýly pre inputy a textarea */
-form label {
+.serverFormular label {
     display: block;
     font-weight: bold;
-    margin-top: 10px;
+    padding: 0.5rem;
 }
-
-form input,
-form textarea {
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-/* Štýly pre tlačidlo */
-form button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    border: none;
-    background-color: #28a745;
-    color: white;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-form button:hover {
-    background-color: #218838;
+.serverFormular input {
+    display: block; 
+    width: 100%; 
+    padding: 0.75rem; 
 }

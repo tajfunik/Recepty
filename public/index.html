@@ -85,26 +85,29 @@
             </div>
 
         </div>
-        <div class="serverInfo">
-            <h1>Moja stránka s Express serverom</h1>
-            <p id="message">Načítavam správu...</p>
-        
+        <div class="serverInfo">       
             <h1>Odoslať novy recept na server</h1>
-            <button id="sendButton">Odoslať recept</button>
-            <div class="formular">
-                <form id="recipe-form">
+            <div class="serverFormular">
+                <h2>toto je dalsi elelemnt pre server forlumar, dalsi bol vo vnutri formularu</h2>
+                <h2>Tu mozte pridavat svoje recepty</h2>
+                <form class="formularNaVytvorenie">
                     <label for="title">Názov receptu:</label>
-                    <input type="text" id="title" name="title" required><br>
+                    <input type="text" id="title" name="title" required>
+
                     <label for="category">Kategória:</label>
-                    <input type="text" id="category" name="category" required><br>                 
+                    <input type="text" id="category" name="category" required>   
+
                     <label for="ingredients">Ingrediencie:</label>
-                    <textarea id="ingredients" name="ingredients" required></textarea><br>                 
-                    <label for="steps">Postup:</label>
-                    <textarea id="steps" name="steps" required></textarea><br>                 
+                    <textarea id="ingredients" name="ingredients" required></textarea>
+
+                    <label for="steps">Postup priprav:</label>
+                    <textarea id="steps" name="steps" required></textarea>
+
                     <label for="image">Obrázok (URL):</label>
-                    <input type="text" id="image" name="image"><br>               
-                    <button type="submit">Pridať recept</button>
-                  </form>
+                    <input type="text" id="image" name="image">
+
+                    <button type="submit">Pridať recept</button>       
+                </form>
             </div>
         </div>
 

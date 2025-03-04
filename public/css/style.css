@@ -9,11 +9,4 @@ html {
     scroll-behavior: smooth;
 }
 
-.serverInfo{
-    text-align: center;
-    height: auto;
-    margin-top: 1rem;
-}
-#message{
-    height: 2.5rem;
-}
+
