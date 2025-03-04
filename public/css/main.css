@@ -223,3 +223,55 @@ form button:hover {
     border-radius: 0.5rem;
     margin-bottom: 1rem;
 }
+
+
+/*----------------------------------Formular na pridanie receptu ----------------------------------------*/
+.formular {
+    display: flex;
+    justify-content: center; /* Horizontálne centrovanie */
+    align-items: center; /* Vertikálne centrovanie */
+    height: 100vh; /* Výška na celú obrazovku */
+}
+
+form {
+    width: 100%;
+    max-width: 400px; 
+    background-color: #f9f9f9; 
+    padding: 20px;
+    border-radius: 10px; 
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Jemný tieň */
+}
+
+/* Štýly pre inputy a textarea */
+form label {
+    display: block;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Štýly pre tlačidlo */
+form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    background-color: #28a745;
+    color: white;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #218838;
+}

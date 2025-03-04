@@ -1,3 +1,4 @@
+//const { response } = require("express")
 
 const listOfRecepies = document.querySelector('.list-of-recepts')
 const selectedReceptTitle = document.querySelector('.detail-title')
@@ -7,6 +8,7 @@ const selectedReceptSteps =  document.querySelector('.detail-steps')
 
 
 
+//-------------------------------------------Nastavenia mena pouzivatela + Logout button ---------------------------------------
 //Odhlasenie sa 
 document.getElementById('logout-btn').addEventListener("click", function(){
     localStorage.removeItem("loggedInUser");
@@ -23,8 +25,33 @@ window.addEventListener("load", () => {
 });
 
 
+//-------------------------------------------Prijimanie dat z databazy na server a na hlavnu stranku ---------------------------------------
+// Funkcia na načítanie receptov z databázy
+let recipes = []
+
+async function getReceptsFromDB() {
+    try {
+        listOfRecepies.innerHTML = `<p>Načítavam recepty...</p>`;
+        const response = await fetch('http://localhost:3000/api/recepty');
+        if (!response.ok) {
+            throw new Error('Chyba pri načítaní receptov');
+        }
+         recipes = await response.json(); // Načítanie JSON dát
+        zobrazRecepty(recipes); // Zobrazenie receptov na stránke
+        console.log(recipes)
+        return recipes
+    } catch (error) {
+        console.error('Chyba:', error);
+    }
+}
+//Nacitaj vsetky recepty z databazy a pridaj ich na stranku pri nacitani stranky
+document.addEventListener('DOMContentLoaded', getReceptsFromDB);
+
+
+
+//-----------------------------------------------------Praca s udajmi z databazy na nasej stranke-----------------------------------------------
 //Funkcia ktora nam zobrazuje recepty z casti "Nase recepty"
-//zavolame ju po kliknuti konkretnej kategorie
+//Zavolame ju po kliknuti konkretnej kategorie v dalsej casti kodu
 function zobrazRecepty(array){
     listOfRecepies.innerHTML = ""
     if(!array || array.length === 0) {
@@ -40,7 +67,7 @@ function zobrazRecepty(array){
             </div>
             <div class="recept-right">
                 <h3>${recept.title}</h3>
-                <p>${recept.popis}</p>
+                <p>${recept.jednotlive_kroky}</p>
             </div>`;
 
         listOfRecepies.appendChild(receptDiv);
@@ -60,6 +87,7 @@ document.querySelectorAll('.recepty-kategorie').forEach(link => {
     });
 });
     
+
 // Kliknutim na dany Recept sa nam zobrazi vpravo + vsetky informacie k nemu
 // Event listnerom "click" handlujeme vsetky objekty v zozname receptov
 listOfRecepies.addEventListener('click', function(event) {
@@ -82,6 +110,30 @@ listOfRecepies.addEventListener('click', function(event) {
 
 
 //---------------------------------------------------Posielanie dat na server cez Fetch--------------------------------
+
+//Vytvorenie metody pre poslanie dat na server cez FETCH
+async function createRecept(recept){
+    try{
+        const response = await fetch("/api/recepty", {  // URL, na ktorú posielame požiadavku
+            method: "POST",  // Používame metódu POST, pretože chceme vytvoriť nový záznam
+            headers: {
+                "Content-Type": "application/json",  // Posielame dáta v JSON formáte
+            },
+            body: JSON.stringify(newRecipeData),  // Prevod objektu na JSON
+        })
+
+        if (!response.ok) {
+            throw new Error(`Chyba: ${response.status} - ${response.statusText}`);
+        }
+
+        const data = await response.json()
+        console.log("Recept bol pridaný:", data);
+
+    } catch (error) {
+        console.log(`recept nebude pridany, nastal nejaky problem`, error)
+    }
+
+}
 // Definícia modelu pre recepty
 // 1. Pridáme event listener na formulár, aby sme zachytili jeho odoslanie.
 document.getElementById("recipe-form").addEventListener("submit", function(event) {
@@ -104,65 +156,10 @@ document.getElementById("recipe-form").addEventListener("submit", function(event
         image: imageForm,
     };
 
-    // 5. Posielame dáta O novom Recepte na server zo stranky cez fetch API
-    fetch("/api/recepty", {  // URL, na ktorú posielame požiadavku
-        method: "POST",  // Používame metódu POST, pretože chceme vytvoriť nový záznam
-        headers: {
-            "Content-Type": "application/json",  // Posielame dáta v JSON formáte
-        },
-        body: JSON.stringify(newRecipeData),  // Prevod objektu na JSON
-    })
-    .then(response => response.json())  // Čakáme na odpoveď zo servera a parsujeme ju ako JSON
-    .then(data => {
-        console.log("Recept bol pridaný:", data);  // Úspešná odpoveď zo servera
-        console.log(newRecipeData)
-    })
-    .catch(error => {
-        console.error("Chyba pri pridávaní receptu:", error);  // Ošetrenie chyby
-    });
+    createRecept(newRecipeData)
+
 });
 
 
-let recipes = []
-
-//-------------------------------------------Prijimanie dat z databazy na server a na hlavnu stranku ---------------------------------------
-// Funkcia na načítanie receptov z databázy
-async function getReceptsFromDB() {
-    try {
-        listOfRecepies.innerHTML = `<p>Načítavam recepty...</p>`;
-        const response = await fetch('http://localhost:3000/api/recepty');
-        if (!response.ok) {
-            throw new Error('Chyba pri načítaní receptov');
-        }
-         recipes = await response.json(); // Načítanie JSON dát
-        zobrazRecepty(recipes); // Zobrazenie receptov na stránke
-        console.log(recipes)
-        return recipes
-    } catch (error) {
-        console.error('Chyba:', error);
-    }
-}
-//Nacitaj vsetky recepty z databazy a pridaj ich na stranku pri nacitani stranky
-document.addEventListener('DOMContentLoaded', getReceptsFromDB);
 
 
-
-
-
-
-
-
-
-
-/*
-//táto funkcia slúži na načítanie údajov z backendu hneď po načítaní stránky.
-document.addEventListener("DOMContentLoaded", async () => {
-    try {
-        const response = await fetch('/recepty'); // Pošle GET požiadavku na backend
-        const data = await response.json();
-        document.getElementById("message").textContent = data.message; // Vloží správu do stránky
-    } catch (error) {
-        console.error("Chyba pri načítaní dát:", error);
-    }
-});
-*/
