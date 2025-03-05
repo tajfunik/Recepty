@@ -89,7 +89,7 @@
             <h1>Ulozit si svoj novy recept</h1>
             <div class="serverFormular">
                 <h2>Tu vlozte konkretne informacie o recepte ktory chcete vlozit</h2>
-                <form class="formularNaVytvorenie">
+                <form class="formularNaVytvorenie" id="myForm">
                     <label for="title" class="serverLabel">Názov receptu</label>
                     <input type="text" id="title" class="upravaLabel" name="title" required placeholder="Recept name">
 
@@ -98,8 +98,8 @@
                         <option value="ranajky">Raňajky</option>
                         <option value="obed">Obed</option>
                         <option value="vecera">Večera</option>
-                        <option value="vecera">Dezerty</option>
-                        <option value="vecera">Svacinky</option>
+                        <option value="dezerty">Dezerty</option>
+                        <option value="svacinky">Svacinky</option>
                     </select> 
 
                     <div class="ingrediencieVsetky">
@@ -118,27 +118,27 @@
                                 <span>Olej</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="olej">
+                                <input type="checkbox" name="ingredients" value="cukor">
                                 <span>Cukor</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="olej">
+                                <input type="checkbox" name="ingredients" value="vanilkovy cukor">
                                 <span>Vanilkovy cukor</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="olej">
+                                <input type="checkbox" name="ingredients" value="kypriaci prasok">
                                 <span>Kypr. prasok</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="zelenina">
+                                <input type="checkbox" name="ingredients" value="korenie">
                                 <span>Korenie</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="ovocie"> 
+                                <input type="checkbox" name="ingredients" value="zelenina"> 
                                 <span>Zelenina</span>
                             </label>
                             <label class="ingredMoznosti">
-                                <input type="checkbox" name="ingredients" value="korenie"> 
+                                <input type="checkbox" name="ingredients" value="ovocie"> 
                                 <span>Ovocie</span>
                             </label>
                         </div>                       
@@ -148,10 +148,9 @@
                     <textarea id="steps" name="steps" required placeholder="Vlozte jednotlive kroky na pripravu" class="receptyTextarea"></textarea>
 
                     <label for="imageUpload" class="serverLabel">Nahraj obrázok:</label>
-                    <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
-                    <img id="previewUpload" src="" alt="Náhľad obrázka" style="max-width: 200px; display: none;">
+                    <input type="text" id="imageUpload" class="upravaLabel" name="title" required placeholder="Vlozte nazov obrazka bez medzier">
 
-                    <button type="submit" class="pridajNovyReceptNaStranke">Pridať recept</button>       
+                    <button type="button" class="pridajNovyReceptNaStranke">Pridať recept</button>       
                 </form>
             </div>
         </div>
@@ -205,6 +204,6 @@
     </div>
 
 
-    <script type="module" src="script.js"></script>
+    <script type="module" src="script.js" defer></script>
 </body>
 </html>

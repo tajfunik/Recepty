@@ -109,56 +109,62 @@ listOfRecepies.addEventListener('click', function(event) {
 
 
 
-//---------------------------------------------------Posielanie dat na server cez Fetch--------------------------------
+//---------------------------------------------------Pridanie noveho receptu do databazy z formulara na stranke--------------------------------
+//Vytvorime si API POST request cez FETCH metodu
+//Pomocou metody FETCH odosleme POST request server a nasledne ulozime do databazy (dalse spracovanie requestu je definovane v controlleri)
+async function pridajReceptZoStranky(mojRecept){
 
-//Vytvorenie metody pre poslanie dat na server cez FETCH
-async function createRecept(recept){
-    try{
-        const response = await fetch("/api/recepty", {  // URL, na ktorú posielame požiadavku
-            method: "POST",  // Používame metódu POST, pretože chceme vytvoriť nový záznam
+    try {
+        const response = await fetch ('/api/recepty', {
+            method: 'POST',
             headers: {
-                "Content-Type": "application/json",  // Posielame dáta v JSON formáte
+                "Content-Type": "application/json",  
             },
-            body: JSON.stringify(newRecipeData),  // Prevod objektu na JSON
+            body: JSON.stringify(mojRecept),
         })
-
-        if (!response.ok) {
+    
+        if(!response.ok){
             throw new Error(`Chyba: ${response.status} - ${response.statusText}`);
         }
-
+    
         const data = await response.json()
         console.log("Recept bol pridaný:", data);
-
     } catch (error) {
-        console.log(`recept nebude pridany, nastal nejaky problem`, error)
+        console.log(`Nieco sa nepodarilo ako malo`, error)
     }
 
 }
-// Definícia modelu pre recepty
-// 1. Pridáme event listener na formulár, aby sme zachytili jeho odoslanie.
-document.getElementById("recipe-form").addEventListener("submit", function(event) {
-    // 2. Zabránime predvolenému správaniu (poslanie formulára a obnovenie stránky).
-    event.preventDefault();
 
-    // 3. Získame hodnoty z formulára pomocou document.querySelector()
-    const categoryForm = document.querySelector("#category").value;  // Získame hodnotu z inputu pre kategóriu
-    const titleForm = document.querySelector("#title").value;  // Získame hodnotu z inputu pre názov receptu
-    const ingredientsForm = document.querySelector("#ingredients").value;  // Získame ingrediencie z textarea
-    const jednotlive_krokyForm = document.querySelector("#steps").value;  // Získame postup receptu z textarea
-    const imageForm = document.querySelector("#image").value;  // Získame obrázok (voliteľný) z inputu
+//Vytiahneme si hodnoty z formulara a vytvorime objekt
+document.querySelector(".pridajNovyReceptNaStranke").addEventListener("click", function(e){
+    e.preventDefault()
 
-    // 4. Vytvoríme objekt s dátami do ktoreho vlozime nami vytiahnute data z formulara v predchadzajucom kroku
-    const newRecipeData = {
-        category: categoryForm,
-        title: titleForm,
-        ingredients: ingredientsForm,
-        jednotlive_kroky: jednotlive_krokyForm,
-        image: imageForm,
-    };
+    //const form = document.querySelector("#myForm")
+    const form = document.querySelector("#myForm");
+    const nazovFromPageFormular = document.querySelector("#title").value
+    const categoryFromPageFormular = document.querySelector("#category").value 
+    const stepsFromPageFormular = document.querySelector("#steps").value 
+    const imageFromPageFormular = document.querySelector("#imageUpload").value
+    
+    // Získame hodnoty z checkboxov - ingrediencie
+    const ingredientsFromPageFormular = [];
+    form.querySelectorAll('input[name="ingredients"]:checked').forEach(checkbox => {
+        ingredientsFromPageFormular.push(checkbox.value);
+    });
 
-    createRecept(newRecipeData)
+    const newRecept = {
+        category: categoryFromPageFormular,
+        title: nazovFromPageFormular,
+        ingredients: JSON.stringify(ingredientsFromPageFormular),
+        jednotlive_kroky: stepsFromPageFormular,
+        obrazok: imageFromPageFormular
+    }
 
-});
+    pridajReceptZoStranky(newRecept)
+
+})
+
+
 
 
 
