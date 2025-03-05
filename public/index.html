@@ -6,6 +6,7 @@
     <title>Moja stránka</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
 
@@ -17,7 +18,7 @@
             <ul>
                 <li><a href="">Domov</a></li>
                 <li><a href="#recepty">Recepty</a></li>
-                <li><a href="">O nás</a></li>
+                <li><a href="#pridajRecept">Pridaj</a></li>
                 <li><a href="">Kontakt</a></li>
             </ul>
         </nav>
@@ -29,7 +30,6 @@
             <p>User: <span id="logged-in-user">Hosť</span></p>
             <button id="logout-btn" class="logout-btn">Odhlásiť sa</button>
         </div>
-
     </div>
 
     <div class="main">
@@ -85,35 +85,123 @@
             </div>
 
         </div>
-        <div class="serverInfo">       
-            <h1>Odoslať novy recept na server</h1>
+        <div class="serverInfo" id="pridajRecept">       
+            <h1>Ulozit si svoj novy recept</h1>
             <div class="serverFormular">
-                <h2>toto je dalsi elelemnt pre server forlumar, dalsi bol vo vnutri formularu</h2>
-                <h2>Tu mozte pridavat svoje recepty</h2>
+                <h2>Tu vlozte konkretne informacie o recepte ktory chcete vlozit</h2>
                 <form class="formularNaVytvorenie">
-                    <label for="title">Názov receptu:</label>
-                    <input type="text" id="title" name="title" required>
+                    <label for="title" class="serverLabel">Názov receptu</label>
+                    <input type="text" id="title" class="upravaLabel" name="title" required placeholder="Recept name">
 
-                    <label for="category">Kategória:</label>
-                    <input type="text" id="category" name="category" required>   
+                    <label for="category" class="serverLabel">Kategória:</label>
+                    <select id="category"  name="category" required>
+                        <option value="ranajky">Raňajky</option>
+                        <option value="obed">Obed</option>
+                        <option value="vecera">Večera</option>
+                        <option value="vecera">Dezerty</option>
+                        <option value="vecera">Svacinky</option>
+                    </select> 
 
-                    <label for="ingredients">Ingrediencie:</label>
-                    <textarea id="ingredients" name="ingredients" required></textarea>
+                    <div class="ingrediencieVsetky">
+                        <label for="category" class="serverLabel">Ingrediencie:</label>
+                        <div class="ingrediencieMoznosti">
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="muka"> 
+                                <span>Múka</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="vajcia">
+                                <span>Vajcia</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="olej">
+                                <span>Olej</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="olej">
+                                <span>Cukor</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="olej">
+                                <span>Vanilkovy cukor</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="olej">
+                                <span>Kypr. prasok</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="zelenina">
+                                <span>Korenie</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="ovocie"> 
+                                <span>Zelenina</span>
+                            </label>
+                            <label class="ingredMoznosti">
+                                <input type="checkbox" name="ingredients" value="korenie"> 
+                                <span>Ovocie</span>
+                            </label>
+                        </div>                       
+                    </div>
 
-                    <label for="steps">Postup priprav:</label>
-                    <textarea id="steps" name="steps" required></textarea>
+                    <label for="steps" class="serverLabel">Postup pripravy:</label>
+                    <textarea id="steps" name="steps" required placeholder="Vlozte jednotlive kroky na pripravu" class="receptyTextarea"></textarea>
 
-                    <label for="image">Obrázok (URL):</label>
-                    <input type="text" id="image" name="image">
+                    <label for="imageUpload" class="serverLabel">Nahraj obrázok:</label>
+                    <input type="file" id="imageUpload" name="imageUpload" accept="image/*">
+                    <img id="previewUpload" src="" alt="Náhľad obrázka" style="max-width: 200px; display: none;">
 
-                    <button type="submit">Pridať recept</button>       
+                    <button type="submit" class="pridajNovyReceptNaStranke">Pridať recept</button>       
                 </form>
             </div>
         </div>
-
     </div>
-    <div class="footer">
 
+    <div class="footer">
+        <footer>
+            <div class="footer-container">
+                <!-- Kontaktné informácie -->
+                <div class="contact-info">
+                    <h4>Kontakt</h4>
+                    <p><strong>Adresa:</strong> Ulica 123, Mesto, Krajina</p>
+                    <p><strong>Email:</strong> info@example.com</p>
+                    <p><strong>Tel:</strong> +421 123 456 789</p>
+                </div>
+        
+                <!-- Rýchle odkazy -->
+                <div class="quick-links">
+                    <h4>Rýchle odkazy</h4>
+                    <ul>
+                        <li><a href="#">O nás</a></li>
+                        <li><a href="#">Služby</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+        
+                <!-- Sociálne siete -->
+                <div class="social-media">
+                    <h4>Sociálne siete</h4>
+                    <a href="#" class="social-icon"><img src="facebook-icon.png" alt="Facebook"></a>
+                    <a href="#" class="social-icon"><img src="twitter-icon.png" alt="Twitter"></a>
+                    <a href="#" class="social-icon"><img src="instagram-icon.png" alt="Instagram"></a>
+                </div>
+        
+                <!-- Právne informácie -->
+                <div class="legal">
+                    <h4>Právne informácie</h4>
+                    <ul>
+                        <li><a href="#">Podmienky používania</a></li>
+                        <li><a href="#">Ochrana osobných údajov</a></li>
+                        <li><a href="#">Reklamačné podmienky</a></li>
+                    </ul>
+                </div>
+            </div>
+        
+            <div class="footer-bottom">
+                <p>&copy; 2025 TvojeFirma. Všetky práva vyhradené.</p>
+            </div>
+        </footer>        
     </div>
 
 
