@@ -157,7 +157,7 @@ document.querySelector(".pridajNovyReceptNaStranke").addEventListener("click", f
         title: nazovFromPageFormular,
         ingredients: JSON.stringify(ingredientsFromPageFormular),
         jednotlive_kroky: stepsFromPageFormular,
-        obrazok: imageFromPageFormular
+        obrazok: `/img/` + imageFromPageFormular
     }
 
     pridajReceptZoStranky(newRecept)
