@@ -162,6 +162,11 @@ document.querySelector(".pridajNovyReceptNaStranke").addEventListener("click", f
 
     pridajReceptZoStranky(newRecept)
 
+    document.querySelector("#title").value = ""
+    document.querySelector("#category").value = ""
+    document.querySelector("#steps").value = ""
+    document.querySelector("#imageUpload").value = ""
+
 })
 
 
