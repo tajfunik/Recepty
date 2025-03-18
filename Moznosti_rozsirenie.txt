@@ -1,22 +1,50 @@
-1. Správa používateľského profilu
-Reset hesla (napríklad cez e-mail s tokenom).
+⭐ 4. Hodnotenie receptov
+Používatelia môžu pridať hodnotenie (napr. 1-5 hviezdičiek).
+Pri recepte sa zobrazí priemerné hodnotenie vypočítané zo všetkých hodnotení.
+Možnosti implementácie:
+Klikateľné hviezdičky (<input type="radio"> alebo JavaScript knihovňa).
+Backend ukladanie hodnotení (každý recept má zoznam hodnotení).
+Zobrazenie počtu hodnotení (napr. "4.5 ⭐ (120 hodnotení)").
+❤️ 5. Obľúbené recepty
+Každý používateľ si môže pridať recepty do svojho zoznamu obľúbených.
+Možnosti implementácie:
+Ikonka srdiečka ❤️ pri každom recepte, ktorú môže používateľ aktivovať/deaktivovať.
+Ukladanie obľúbených receptov do databázy (viazané na používateľa).
+Zobrazenie sekcie "Moje obľúbené", kde si používateľ môže prezrieť uložené recepty.
+🛒 6. Tvorba nákupného zoznamu
+Používateľ si môže vybrať recepty a vygenerovať zoznam ingrediencií na nákup.
+Možnosti implementácie:
+Pri recepte bude tlačidlo "Pridať do nákupného zoznamu".
+Automatické sčítanie ingrediencií (napr. ak viac receptov používa múku, spočíta sa množstvo).
+Možnosť exportovať zoznam ako PDF alebo textový súbor.
+🍎 10. Automatický výpočet nutričných hodnôt
+Po zadaní ingrediencií sa spočíta nutričná hodnota receptu.
+Možnosti implementácie:
+Použitie nutričného API (napr. Edamam API).
+Pre každú ingredienciu sa načítajú kalórie, tuky, bielkoviny a sacharidy.
+Výstup môže byť zobrazený pod receptom ako nutričná tabuľka.
+📅 11. Plánovač jedál na týždeň
+Používateľ si môže naplánovať recepty na každý deň v týždni.
+Možnosti implementácie:
+Rozdelenie na pondelok - nedeľa s možnosťou pridávať recepty.
+Prepojenie s nákupným zoznamom – automaticky sa vygeneruje zoznam surovín na celý týždeň.
+Možnosť uložiť plán do databázy a zobraziť si ho neskôr.
+🖨️📱 12. Tlač a zdieľanie receptov
+Používateľ môže recept vytlačiť alebo zdieľať.
+Možnosti implementácie:
+Tlač receptu (napr. window.print() alebo generovanie PDF cez jsPDF).
+Zdieľanie na sociálnych sieťach (Facebook, Twitter, WhatsApp, e-mail).
+Možnosť skopírovať odkaz a poslať ho priateľom.
 
-2. Ochrana a správa relácií
-Automatické odhlásenie po určitom čase nečinnosti.
-Obnova relácie – napr. cez refresh token alebo trvalé prihlásenie.
-3. Role a oprávnenia
-Rozlíšenie medzi administrátorom a bežným používateľom.
-Administrátorské rozhranie na správu používateľov.
-4. Obsahová časť aplikácie
-Možnosť pridávať, upravovať a mazať nejaký obsah (napr. články, komentáre, produkty atď.).
-Implementácia filtrov a vyhľadávania.
-5. Realtime funkcie (ak je to relevantné)
-Notifikácie pre používateľov (napr. nové správy, schválenie príspevku).
-Live chat alebo komentárový systém.
-6. Bezpečnostné opatrenia
-Ochrana proti brute-force útokom (napr. obmedzenie pokusov o prihlásenie).
-Dvojfaktorová autentifikácia (2FA).
-Ukladanie hesiel pomocou bcrypt alebo iného hashovania.
-7. API (ak plánuješ rozšíriť projekt)
-Vytvorenie RESTful alebo GraphQL API.
-Možnosť integrovať aplikáciu s inými službami.
+
+
+
+
+
+
+
+
+ Čo ideme implementovať?
+Každý používateľ bude môcť ohodnotiť recept iba raz.
+Po kliknutí na hviezdičku sa jeho hodnotenie uloží do databázy.
+Po ohodnotení sa už nebude dať zmeniť hodnotenie.

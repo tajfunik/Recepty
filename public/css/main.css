@@ -183,7 +183,29 @@ form button:hover {
 
 .recept-right{
     width: 70%;
+    height: auto;
+    position: relative;
     text-align: center;
+}
+
+/*-------------------------Uprava ratingu v cards ------------------------------*/
+.rating {
+    position: absolute;
+    width: 100%;
+    left: 0.5rem;
+    bottom: 0.1rem;
+    text-align: left;
+}
+
+.stars {
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+.average-rating {
+    font-size: 1.2rem;
+    padding: 0.25rem 3.25rem 0.5rem 1rem;
+    color: #555; /* Sivá farba pre text */
 }
 
 
@@ -312,3 +334,5 @@ form button:hover {
 .pridajNovyReceptNaStranke{
     font-size: 1.5rem;
 }
+
+

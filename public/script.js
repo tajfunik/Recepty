@@ -61,6 +61,12 @@ function zobrazRecepty(array){
     array.forEach((recept) => {
         const receptDiv = document.createElement('div');
         receptDiv.classList.add('recept');
+
+        // Výpočet priemerného hodnotenia
+        const ratings = recept.ratings || [];
+        const avgRating = ratings.length > 0 ? (ratings.reduce((sum, num) => sum + num, 0) / ratings.length).toFixed(1) : "0.0";
+        let stars = "☆☆☆☆☆"
+
         receptDiv.innerHTML = `
             <div class="recept-left">
                 <img src="${recept.obrazok}" alt="Obrazok nenajdeny">
@@ -68,6 +74,12 @@ function zobrazRecepty(array){
             <div class="recept-right">
                 <h3>${recept.title}</h3>
                 <p>${recept.jednotlive_kroky}</p>
+
+                <!-- Zobrazenie hodnotenia -->
+                <div class="rating">
+                    <span class="average-rating">Rating = ${avgRating}/5</span>
+                    <span class="average-rating">Vase hodnotenie: ${stars}</span>
+                </div>
             </div>`;
 
         listOfRecepies.appendChild(receptDiv);
