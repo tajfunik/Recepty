@@ -47,6 +47,7 @@ app.get('/', (req, res) => {
 // Pridanie routy pre login
 // Odošli login.html súbor z adresára public
 app.get('/login', (req, res) => {
+  console.log('Volanie routy /login')
   res.sendFile('login.html', { root: 'public' }); 
 });
 // Pridanie routy pre Registraciu

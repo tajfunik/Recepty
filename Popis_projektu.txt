@@ -1,4 +1,7 @@
 Popis projektu:
+- projekt spustime cez prikaz spustenia servera (nodemon ./server/server.js), musime sa najprv prihlasit
+meno: Martin 
+heslo: qwert12345
 
 1️⃣ Frontend – JavaScript (Login Form)
  Login stránka (login.js)

@@ -65,7 +65,7 @@ function zobrazRecepty(array){
         // Výpočet priemerného hodnotenia
         const ratings = recept.ratings || [];
         const avgRating = ratings.length > 0 ? (ratings.reduce((sum, num) => sum + num, 0) / ratings.length).toFixed(1) : "0.0";
-        let stars = "☆☆☆☆☆"
+        //let stars = "☆☆☆☆☆"
 
         receptDiv.innerHTML = `
             <div class="recept-left">
@@ -78,7 +78,9 @@ function zobrazRecepty(array){
                 <!-- Zobrazenie hodnotenia -->
                 <div class="rating">
                     <span class="average-rating">Rating = ${avgRating}/5</span>
-                    <span class="average-rating">Vase hodnotenie: ${stars}</span>
+                    <span class="average-rating">Vase hodnotenie: </span>
+                    <span class="rating-input" data-recept-id="${recept._id}">
+                     ★★★★★</span>
                 </div>
             </div>`;
 
