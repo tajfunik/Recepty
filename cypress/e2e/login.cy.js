@@ -36,7 +36,7 @@ describe('Login stránka', () => {
       .should('be.visible')      // viditeľný pre používateľa
       .and('have.length', 1);    // je tam len jeden takýto prvok
   });
-  /*
+  
   // 2. Validacia alert okna
   it('zobrazi chybu - alert okno, ak niektore z poli nie je vyplnene', () => {
      // Zachytíme alert okno
@@ -80,5 +80,5 @@ describe('Login stránka', () => {
       expect(meno).to.equal('Samko'); // konkretne meno, ktore sme pouzili vyssie 
       expect(token).to.exist;
     });
-  });*/
+  });
 });

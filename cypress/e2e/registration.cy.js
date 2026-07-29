@@ -21,3 +21,5 @@ describe('Registrácia stránka', () => {
     // Tu môžeš pridať test na úspešnú registráciu (napr. overenie presmerovania alebo správy)
   });
 });
+
+
