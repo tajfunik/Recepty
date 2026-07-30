@@ -8,7 +8,7 @@ export const recepty = [
     {   
         category: "Obed", title: "Pecene kurca", ingredients: "muka, vajcia, olej",jednotlive_kroky: "Tu bude popis daneho receptu",
         obrazok: "/img/pecene_kurca.jpg",
-        popis: "Pecene kurva je jednoduchy recept bez velkej namahy, kde je podstatne sledovanie procesu pecenia"
+        popis: "Pecene kura je jednoduchy recept bez velkej namahy, kde je podstatne sledovanie procesu pecenia"
     },
     {   
         category: "Obed", title: "Vyprazany syr", ingredients: "muka, vajcia, olej", jednotlive_kroky: "Tu bude popis daneho receptu",
